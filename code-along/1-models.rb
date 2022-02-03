@@ -2,6 +2,7 @@
 # when running this code.  To do so, your current working directory
 # should be the top-level directory (i.e. /workspace/your-app/) and then run:
 # rails runner code-along/1-models.rb
+# cat log/development.log - this shows you all of the items in a file
 
 # **************************
 # Don't change or move
@@ -21,7 +22,7 @@ values = {
 }
 
 company = Company.new(values)
-company.save #insert into the database
+company.save #insert into a row on the table (enter into database)/hold this in memory 
 puts "There are #{Company.all.count} companies"
 
 values = {
@@ -35,8 +36,26 @@ company = Company.new(values)
 company.save #insert into the database
 puts "There are #{Company.all.count} companies"
 
+
+company = Company.new
+company.write_attribute(:name, "Tesla") # or company.name = "Tesla"
+company.write_attribute(:url, "https://tesla.com") # or company.url = "https://tesla.com"
+company.write_attribute(:city, "Palo Alto") 
+company.write_attribute(:state, "CA")
+company.save
+puts "There are #{Company.all.count} companies"
+
 # 3. query companies table
+#puts Company.all.inspect #creates arrays, and basically a hash 
+
+#companies = Company.where({state:"CA"}) #adding a WHERE clause - state is the value we are searching by and the paranthesis is what viewing
+#puts companies.inspect
+
+apple = Company.where({state:"CA", name: "Apple"})[0] #adding a WHERE clause CA state companies with name apple, the brackers create the index. So saying show the very first instance where this is correct
+puts apple.inspect 
 
 # 4. read column values from row
+
+
 
 # 5. update attribute value
