@@ -55,7 +55,17 @@ apple = Company.where({state:"CA", name: "Apple"})[0] #adding a WHERE clause CA 
 puts apple.inspect 
 
 # 4. read column values from row
+puts apple.read_attribute(:url) #retruns value for that specifict column/attribute 
+puts "#{apple.name} has a website: #{apple.url}"
 
 
+# 5. update attribute value - adding a slogan
+apple.write_attribute(:slogan, "Think Different.")
+# OR YOU CAN USE: apple.slogan = "Think Different."
+apple.save
+puts apple.inspect
 
-# 5. update attribute value
+#6 deleting - saw you made incorrect row Tesler
+tesler = Company.new({name: "Tesler"})
+tesler.save
+tesler.destroy 
